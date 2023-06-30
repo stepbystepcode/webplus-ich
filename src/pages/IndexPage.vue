@@ -22,21 +22,9 @@
       <q-carousel-slide :name="4" img-src="https://cdn.quasar.dev/img/quasar.jpg"/>
     </q-carousel>
     <div class="btn-warp row justify-center q-gutter-lg">
-      <div class="column flex-center">
-        <q-btn round color="black" icon="my_location" class="q-mb-sm"></q-btn>
-        走进非遗
-      </div>
-      <div class="column flex-center">
-        <q-btn round color="black" icon="my_location" class="q-mb-sm"></q-btn>
-        非遗传承
-      </div>
-      <div class="column flex-center">
-        <q-btn round color="black" icon="my_location" class="q-mb-sm"></q-btn>
-        VR体验
-      </div>
-      <div class="column flex-center">
-        <q-btn round color="black" icon="my_location" class="q-mb-sm"></q-btn>
-        非遗学习
+      <div v-for="btn in btnGroup" :key="btn.title" class="column flex-center">
+        <q-btn round style="background-color: #EBD3AC" :icon="btn.icon" class="q-mb-sm"></q-btn>
+        {{btn.title}}
       </div>
     </div>
   </q-page>
@@ -48,6 +36,28 @@ import {ref} from 'vue';
 const text = ref('');
 const slide = ref(1);
 const autoplay = ref(true);
+const btnGroup = [
+  {
+    'title':'走进非遗',
+    'icon':'my_location',
+    'link':''
+  },
+  {
+    'title':'非遗传承',
+    'icon':'my_location',
+    'link':''
+  },
+  {
+    'title':'VR体验',
+    'icon':'my_location',
+    'link':''
+  },
+  {
+    'title':'非遗学习',
+    'icon':'my_location',
+    'link':''
+  }
+]
 
 </script>
 <style scoped lang="scss">
