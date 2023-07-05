@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ich</string>
+    <string name="title_activity_main">ich</string>
+    <string name="package_name">org.webplus.ich</string>
+    <string name="custom_url_scheme">org.webplus.ich</string>
+</resources>

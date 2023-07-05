@@ -2,7 +2,7 @@
   "name": "webplus-ich",
   "version": "0.0.1",
   "description": "This app is a comprehensive platform that serves as a dissemination platform for intangible cultural heritage. It offers features such as digital exhibition, cultural merchandise, social media marketing, encyclopedia of cultural artifacts, and 3D modeling showcase.",
-  "productName": "ich",
+  "productName": "云上非遗",
   "author": "Li Jing",
   "private": true,
   "scripts": {

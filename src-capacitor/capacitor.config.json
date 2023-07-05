@@ -1,0 +1,10 @@
+{
+  "appId": "org.webplus.ich",
+  "appName": "云上非遗",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}
