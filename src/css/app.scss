@@ -2,3 +2,19 @@
 .radius{
   border-radius: 1rem;
 }
+input::-webkit-input-placeholder{
+  text-align: center!important;
+}
+input::-ms-input-placeholder{
+  text-align: center!important;
+}
+.q-btn .q-icon, .q-btn .q-spinner {
+  font-size: 0.715em;
+}
+.q-carousel__navigation .q-btn {
+  margin: 0 0 -10px;
+  padding: 5px;
+}
+.q-tab__indicator{
+  display: none;
+}
