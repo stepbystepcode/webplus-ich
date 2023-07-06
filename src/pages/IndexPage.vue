@@ -1,12 +1,9 @@
 <template>
   <q-page>
     <div class="column q-mx-md">
-    <!--    <div class="column">-->
-    <!--    <q-img src="/others/search-bar.png"></q-img>-->
-    <!--    <input v-model="text" />-->
-    <!--    </div>-->
+      <img class="full-width" style="position: absolute;left:0;top:0;z-index: -1" src="/others/home-bg.jpg" alt="">
     <q-field borderless style="background-image: url(/others/search-bar.png); background-size: contain;">
-      <q-input borderless placeholder="搜 索" class="q-pl-lg" style="width: 100%"></q-input>
+      <q-input borderless placeholder="搜  索" class="q-px-xl" style="width: 100%"></q-input>
     </q-field>
     <q-carousel
       animated
@@ -27,7 +24,7 @@
     <div class="btn-warp row justify-center q-gutter-lg">
       <div v-for="(btn,i) in btnGroup" :key="btn.title" class="column flex-center">
         <q-btn round style="background-color: #EBD3AC" class="q-mb-sm flex-center"><img style="width:2.9em"
-                                                                                        :src="`/btn-group/${i+1}.png`"
+                                                                                        :src="`/home/btn-group/${i+1}.png`"
                                                                                         alt=""></q-btn>
         {{ btn.title }}
       </div>
@@ -35,7 +32,7 @@
     <HrLine/>
     <span class="text-h6 q-my-md">每日资讯></span>
     <q-card class="row justify-between">
-      <div style="flex:1" class="q-pa-md">高勇旺<br>64岁的国家级非物质文化遗产代表性继承人，中国艺术设计院副院长。</div>
+      <div style="flex:1" class="q-pa-md">高水旺<br>64岁的国家级非物质文化遗产代表性继承人，中国艺术设计院副院长。</div>
       <q-img width="7rem" src="/others/gsw.png" alt=""></q-img>
     </q-card>
     <span class="text-h6 q-my-md">热门推荐></span></div>
