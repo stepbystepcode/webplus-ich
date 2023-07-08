@@ -36,13 +36,13 @@ const btnGroup = [
         {label: '动态', value: 'moments'},
         {label: '关注', value: 'focus'},
       ]"
-    />
+    /></div>
     <q-tab-panels v-model="model" animated class="bg-transparent">
       <q-tab-panel name="moments">
         <q-input rounded outlined dense class="q-mb-md" bg-color="white"></q-input>
         <div class="btn-warp row justify-center q-gutter-lg">
           <div v-for="(btn,i) in btnGroup" :key="btn.title" class="column flex-center">
-            <q-btn round style="background-color: #EBD3AC" class="q-mb-sm flex-center"><img style="width:2.9em"
+            <q-btn round style="background-color: #EBD3AC" class="q-mb-sm flex-center"><img style="width:3rem;border-radius: 50%"
                                                                                             :src="`/moments/btn-group/${i+1}.jpg`"
                                                                                             alt=""></q-btn>
             {{ btn.title }}
@@ -63,7 +63,7 @@ const btnGroup = [
               </q-btn>
             </div>
             <span>3月3日 山西</span>
-            <div class="row q-my-md" style="height: 200px;gap:.5rem">
+            <div class="row q-my-md" style="height: 150px;gap:.5rem">
               <div class="bg-red col radius"></div>
               <div class="column col" style="gap:.5rem">
                 <div class="bg-green col radius"></div>
@@ -84,7 +84,6 @@ const btnGroup = [
         <div class="text-h6">关注</div>
       </q-tab-panel>
     </q-tab-panels>
-  </div>
 </template>
 
 <style scoped lang="scss">
