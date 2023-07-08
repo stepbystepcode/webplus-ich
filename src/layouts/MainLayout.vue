@@ -1,8 +1,10 @@
 <template>
   <q-layout view="lHh Lpr lFf">
+    <Suspense>
     <q-page-container>
       <router-view />
     </q-page-container>
+    </Suspense>
     <q-footer class="bg-white fixed">
       <q-separator />
       <q-tabs dense align="justify" v-model="activeTab" class="text-black">

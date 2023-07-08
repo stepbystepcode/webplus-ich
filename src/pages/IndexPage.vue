@@ -1,5 +1,42 @@
+<script setup lang="ts">
+import {ref} from 'vue';
+import axios from 'axios';
+import HrLine from '../components/HrLine.vue'
+
+const slide = ref(1);
+const autoplay = ref(true);
+const btnGroup = [
+  {
+    'title': '走进非遗',
+    'link': ''
+  },
+  {
+    'title': '非遗传承',
+    'link': ''
+  },
+  {
+    'title': 'VR体验',
+    'link': ''
+  },
+  {
+    'title': '非遗学习',
+    'link': ''
+  }
+]
+const load=ref(false);
+let res=ref();
+try {
+  res.value = await axios.get('https://link.ichgo.cn/api/v1/swiper/get_list');
+  load.value=true;
+} catch (error) {
+  // Handle errors
+}
+
+</script>
 <template>
-  <q-page>
+  <q-page
+    v-if="load"
+  >
     <div class="column q-mx-md">
       <img class="full-width" style="position: absolute;left:0;top:0;z-index: -1" src="/others/home-bg.jpg" alt="">
     <q-field borderless style="background-image: url(/others/search-bar.png); background-size: contain;">
@@ -19,7 +56,8 @@
       @mouseenter="autoplay = false"
       @mouseleave="autoplay = true"
     >
-      <q-carousel-slide v-for="i in 5" :name="i" :key="i" :img-src="`/carousel/${i}.jpg`"/>
+      <q-carousel-slide  v-for="i in res.data.Data" :name="i.id" :key="i" :img-src="i.img"/>
+
     </q-carousel>
     <div class="btn-warp row justify-center q-gutter-lg">
       <div v-for="(btn,i) in btnGroup" :key="btn.title" class="column flex-center">
@@ -47,33 +85,6 @@
   </q-page>
 </template>
 
-<script setup lang="ts">
-import {ref} from 'vue';
-import HrLine from '../components/HrLine.vue'
-
-const text = ref('');
-const slide = ref(1);
-const autoplay = ref(true);
-const btnGroup = [
-  {
-    'title': '走进非遗',
-    'link': ''
-  },
-  {
-    'title': '非遗传承',
-    'link': ''
-  },
-  {
-    'title': 'VR体验',
-    'link': ''
-  },
-  {
-    'title': '非遗学习',
-    'link': ''
-  }
-]
-
-</script>
 <style scoped lang="scss">
 .btn-warp button {
   width: 3rem;
