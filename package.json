@@ -15,6 +15,7 @@
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "axios": "^1.4.0",
+    "photoswipe": "^5.3.8",
     "pinia": "^2.0.11",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",

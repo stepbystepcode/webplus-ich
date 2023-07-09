@@ -1,7 +1,33 @@
 <script setup lang="ts">
 import {ref} from 'vue'
-
+import SimpleGallery from '../components/MomentsGallery.vue';
 const model = ref('moments')
+const images= [
+    {
+      largeURL:
+        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg',
+      thumbnailURL:
+        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg',
+      width: 1875,
+      height: 2500,
+    },
+    {
+      largeURL:
+        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg',
+      thumbnailURL:
+        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg',
+      width: 1669,
+      height: 2500,
+    },
+    {
+      largeURL:
+        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg',
+      thumbnailURL:
+        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg',
+      width: 2500,
+      height: 1666,
+    },
+  ];
 const btnGroup = [
   {
     'title': '传承人互动',
@@ -63,13 +89,19 @@ const btnGroup = [
               </q-btn>
             </div>
             <span>3月3日 山西</span>
-            <div class="row q-my-md" style="height: 150px;gap:.5rem">
-              <div class="bg-red col radius"></div>
-              <div class="column col" style="gap:.5rem">
-                <div class="bg-green col radius"></div>
-                <div class="bg-yellow col radius"></div>
-              </div>
+<!--            <div class="row q-my-md" style="height: 150px;gap:.5rem">-->
+<!--              <div class="bg-red col radius"></div>-->
+<!--              <div class="column col" style="gap:.5rem">-->
+<!--                <div class="bg-green col radius"></div>-->
+<!--                <div class="bg-yellow col radius"></div>-->
+<!--              </div>-->
+<!--            </div>-->
+            <div class="abc">
+              <div></div>
+              <div></div>
+              <div></div>
             </div>
+            <SimpleGallery galleryID="my-test-gallery" :images="images" />
             <span>开始，我只是学会了扎染，后来我发现我多了一份生活。</span>
             <div class="row justify-end items-center q-gutter-x-sm">
               <q-icon name="o_repeat"></q-icon>{{16}}
@@ -105,4 +137,22 @@ const btnGroup = [
     }
   }
 }
+.abc {
+  display: flex;
+  width: 100%;
+  height: 150px;
+}
+
+.abc > div:first-child {
+  flex-basis: 30%;
+}
+
+.abc > div:nth-child(2),
+.abc > div:nth-child(3) {
+  flex-basis: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 </style>
