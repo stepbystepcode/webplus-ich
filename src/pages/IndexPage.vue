@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import {ref} from 'vue';
+import {useRouter} from 'vue-router';
 import axios from 'axios';
 import HrLine from '../components/HrLine.vue'
 
+const router=useRouter();
 const slide = ref(1);
 const autoplay = ref(true);
+
 const btnGroup = [
   {
     'title': '走进非遗',
@@ -25,22 +28,41 @@ const btnGroup = [
 ]
 const load=ref(false);
 let res=ref();
-try {
-  res.value = await axios.get('https://link.ichgo.cn/api/v1/swiper/get_list');
-  load.value=true;
-} catch (error) {
-  // Handle errors
+let search=ref();
+interface SwiperData {
+  id: number;
+  img: string;
 }
 
+interface ClassData {
+  id: number;
+  // other properties
+}
+
+(async () => {
+  try {
+    const [response1, response2] = await Promise.all([
+      axios.get<{ Data: SwiperData[] }>('https://link.ichgo.cn/api/v1/swiper/get_list'),
+      axios.get<{ Data: ClassData[] }>('https://link.ichgo.cn/api/v1/class/get_list'),
+    ]);
+
+    res.value = response1.data.Data;
+    search.value = response2.data.Data;
+    load.value = true;
+  } catch (error) {
+    console.error(error);
+  }
+})();
 </script>
 <template>
   <q-page
     v-if="load"
   >
+
     <div class="column q-mx-md">
       <img class="full-width" style="position: absolute;left:0;top:0;z-index: -1" src="/others/home-bg.jpg" alt="">
     <q-field borderless style="background-image: url(/others/search-bar.png); background-size: contain;">
-      <q-input borderless placeholder="搜  索" class="q-px-xl" style="width: 100%"></q-input>
+      <q-input @click="router.push('/search')" borderless placeholder="搜  索" class="q-px-xl" style="width: 100%"></q-input>
     </q-field>
     <q-carousel
       animated
@@ -56,7 +78,7 @@ try {
       @mouseenter="autoplay = false"
       @mouseleave="autoplay = true"
     >
-      <q-carousel-slide  v-for="i in res.data.Data" :name="i.id" :key="i" :img-src="i.img"/>
+      <q-carousel-slide  v-for="i in res" :name="i.id" :key="i" :img-src="i.img"/>
 
     </q-carousel>
     <div class="btn-warp row justify-center q-gutter-lg">

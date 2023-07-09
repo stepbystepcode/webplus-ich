@@ -27,6 +27,8 @@ const content=[
     text:'购物车'
   }
 ]
+import { useCounterStore } from 'stores/user';
+const store = useCounterStore();
 </script>
 
 <template>
@@ -34,7 +36,9 @@ const content=[
   <div class="q-ma-md">
     <div class="text-h5 q-py-lg">我的</div>
     <div class="radius column flex-center shadow-2" style="background: url(/others/bg.jpg);height: 10rem"><q-img class="avatar" src="/others/avatar.jpg" alt=""></q-img>
-      <div style="color: #d0ad68;font-size: 1.7em">Robert Fox</div>
+      <div style="color: #d0ad68;font-size: 1.7em">
+        <a href="/login" style="text-decoration: none">{{store.username}}</a>
+        </div>
       <q-btn class="be-artist">成为识艺者</q-btn>
     </div>
     <div class="text-h6 q-my-md">我的账户</div>
