@@ -2,8 +2,8 @@
 import {ref} from 'vue';
 import { useQuasar } from 'quasar'
 import axios from 'axios';
-import { useCounterStore } from 'stores/user';
-const store = useCounterStore();
+import { useUserStore } from 'stores/user';
+const store = useUserStore();
 import {useRouter} from 'vue-router';
 const router=useRouter();
 

@@ -2,10 +2,10 @@
 import {ref} from 'vue';
 import { useQuasar } from 'quasar'
 import axios from 'axios';
-import { useCounterStore } from 'stores/user';
+import { useUserStore } from 'stores/user';
 import {useRouter} from 'vue-router';
 const router=useRouter();
-const store = useCounterStore();
+const store = useUserStore();
 
 const $q = useQuasar()
 const username=ref('');

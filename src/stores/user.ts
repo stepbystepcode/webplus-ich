@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useCounterStore = defineStore('counter', {
+export const useUserStore = defineStore('counter', {
   state: () => ({
     username: '未登录'
   }),

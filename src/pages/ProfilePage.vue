@@ -1,4 +1,7 @@
 <script setup lang="ts">
+import {useRouter} from 'vue-router';
+const router = useRouter();
+
 const account=[{
   icon:'message',
   text:'系统消息'
@@ -27,8 +30,8 @@ const content=[
     text:'购物车'
   }
 ]
-import { useCounterStore } from 'stores/user';
-const store = useCounterStore();
+import { useUserStore } from 'stores/user';
+const store = useUserStore();
 </script>
 
 <template>
@@ -37,7 +40,7 @@ const store = useCounterStore();
     <div class="text-h5 q-py-lg">我的</div>
     <div class="radius column flex-center shadow-2" style="background: url(/others/bg.jpg);height: 10rem"><q-img class="avatar" src="/others/avatar.jpg" alt=""></q-img>
       <div style="color: #d0ad68;font-size: 1.7em">
-        <a href="/login" style="text-decoration: none">{{store.username}}</a>
+        <div @click="router.push('/login')">{{store.username}}</div>
         </div>
       <q-btn class="be-artist">成为识艺者</q-btn>
     </div>
