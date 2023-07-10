@@ -25,9 +25,14 @@ const onSubmit=()=>{
       message: res.data.Msg=='success'?'登录成功':res.data.Msg
     });
     if(status){
-      store.login(username.value);
+      store.login(username.value,res.data.Data);
+      window.localStorage.setItem('token',res.data.Data);
+      window.localStorage.setItem('username',username.value);
+      router.push('/');
     }else{
       store.logout();
+      window.localStorage.removeItem('token');
+      window.localStorage.removeItem('username');
     }
   });
 }

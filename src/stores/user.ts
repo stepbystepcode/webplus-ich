@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia';
 
-export const useUserStore = defineStore('counter', {
+export const useUserStore = defineStore('users', {
   state: () => ({
-    username: '未登录'
+    username: '未登录',
+    token:''
   }),
 
   getters: {
@@ -15,11 +16,13 @@ export const useUserStore = defineStore('counter', {
     //increment () {
       //this.counter++;
     //}
-    login(username:string){
+    login(username:string,token:string){
       this.username=username;
+      this.token=token;
     },
     logout(){
       this.username='未登录'
+      this.token='';
     }
   }
 });

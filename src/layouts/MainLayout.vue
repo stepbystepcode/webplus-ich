@@ -18,6 +18,8 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useUserStore } from 'stores/user';
+const store = useUserStore();
 interface Tab {
   name: string;
   label: string;
@@ -46,4 +48,7 @@ const isActiveTab = (tab: Tab) => {
   const route = useRoute();
   return route.path.includes(tab.name);
 };
+if(store.token==''&&window.localStorage.getItem('token')){
+  store.login(window.localStorage.getItem('username') as string,window.localStorage.getItem('token') as string);
+}
 </script>
