@@ -22,6 +22,7 @@ const routes: RouteRecordRaw[] = [
       { path: '/signup', component: () => import('pages/SignupPage.vue') },
       { path: '/class/:id', component: () => import('pages/ClassDetail.vue') },
       { path: '/product/:id', component: () => import('pages/ProductDetail.vue') },
+      { path: '/post', component: () => import('pages/PostPage.vue') },
     ],
   },
 

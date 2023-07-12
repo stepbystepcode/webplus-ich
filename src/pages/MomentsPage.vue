@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import {ref} from 'vue'
+import {useRouter} from 'vue-router';
+const router=useRouter();
 import SimpleGallery from '../components/MomentsGallery.vue';
 const model = ref('moments')
 const images= [
@@ -50,7 +52,7 @@ const btnGroup = [
 
 <template>
   <div class="fullscreen" style="background: url(/others/bg.jpg);filter: blur(2px);z-index: -1"></div>
-  <div class="q-pa-md">
+  <div class="q-pa-md row justify-between">
     <q-btn-toggle
       v-model="model"
       toggle-text-color="black"
@@ -62,7 +64,8 @@ const btnGroup = [
         {label: '动态', value: 'moments'},
         {label: '关注', value: 'focus'},
       ]"
-    /></div>
+    />
+  <q-btn flat @click="router.push('/post')"><q-icon size="1.5em" name="add_circle"></q-icon></q-btn></div>
     <q-tab-panels v-model="model" animated class="bg-transparent">
       <q-tab-panel name="moments">
         <q-input rounded outlined dense class="q-mb-md" bg-color="white"></q-input>
