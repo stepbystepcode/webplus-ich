@@ -4,6 +4,7 @@ import {useRouter} from 'vue-router';
 const router=useRouter();
 import SimpleGallery from '../components/MomentsGallery.vue';
 const model = ref('moments')
+const subscribe = ref(false);
 const images= [
     {
       largeURL:
@@ -87,8 +88,8 @@ const btnGroup = [
                 <span>MARS</span>
                 <q-badge rounded class="q-mx-sm" color="orange" label="VIP"/>
                 <span>每日分享:</span></div>
-              <q-btn rounded dense flat class="q-px-sm justify-center items-center"
-                     style="height: 5px;border:1px solid #886f65;color: #886f65">+ 关注
+              <q-btn @click="subscribe=!subscribe" rounded dense flat class="q-px-sm justify-center items-center"
+                     style="height: 5px;border:1px solid #886f65;color: #886f65">{{subscribe?'已关注':'+ 关注'}}
               </q-btn>
             </div>
             <span>3月3日 山西</span>
@@ -99,12 +100,7 @@ const btnGroup = [
 <!--                <div class="bg-yellow col radius"></div>-->
 <!--              </div>-->
 <!--            </div>-->
-            <div class="abc">
-              <div></div>
-              <div></div>
-              <div></div>
-            </div>
-            <SimpleGallery galleryID="my-test-gallery" :images="images" />
+            <SimpleGallery class="q-my-sm" galleryID="my-test-gallery" :images="images" />
             <span>开始，我只是学会了扎染，后来我发现我多了一份生活。</span>
             <div class="row justify-end items-center q-gutter-x-sm">
               <q-icon name="o_repeat"></q-icon>{{16}}

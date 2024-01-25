@@ -9,7 +9,7 @@
       target="_blank"
       rel="noreferrer"
     >
-      <img :src="image.thumbnailURL" alt="" />
+      <img style="width: 5rem;height: 5rem;margin-right: 3px" :src="image.thumbnailURL" alt="" />
     </a>
   </div>
 </template>

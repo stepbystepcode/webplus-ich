@@ -13,6 +13,11 @@ const routes: RouteRecordRaw[] = [
       },
       { path: '/dm', component: () => import('pages/DigitalMuseum.vue') },
       { path: '/shop', component: () => import('pages/ShopPage.vue') },
+      { path: '/history', component: () => import('pages/HistoryPage.vue') },
+      { path: '/order', component: () => import('pages/OrderPage.vue') },
+      { path: '/goods/:id', component: () => import('pages/GoodsDetail.vue') },
+      { path: '/shop/:id', component: () => import('pages/ShopClass.vue') },
+      { path: '/cart', component: () => import('pages/ShopCart.vue') },
       {
         path: '/profile',
         component: () => import('pages/ProfilePage.vue'),

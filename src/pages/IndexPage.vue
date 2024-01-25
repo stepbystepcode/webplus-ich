@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import {useRouter} from 'vue-router';
-import axios from 'axios';
 import HrLine from '../components/HrLine.vue'
+import http from 'src/utils/http';
 
 const router=useRouter();
 const slide = ref(1);
@@ -42,8 +42,8 @@ interface ClassData {
 (async () => {
   try {
     const [response1, response2] = await Promise.all([
-      axios.get<{ Data: SwiperData[] }>('https://link.ichgo.cn/api/v1/swiper/get_list'),
-      axios.get<{ Data: ClassData[] }>('https://link.ichgo.cn/api/v1/class/get_list'),
+      http.get<{ Data: SwiperData[] }>('/swiper/get_list'),
+      http.get<{ Data: ClassData[] }>('/class/get_list'),
     ]);
 
     res.value = response1.data.Data;

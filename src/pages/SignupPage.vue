@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import { useQuasar } from 'quasar'
-import axios from 'axios';
 import { useUserStore } from 'stores/user';
 import {useRouter} from 'vue-router';
+import http from 'src/utils/http';
 const router=useRouter();
 const store = useUserStore();
 
@@ -17,7 +17,7 @@ const onSubmit=()=>{
     password:password.value,
     re_password:re_password.value
   }
-  axios.post('https://link.ichgo.cn/api/v1/user/signup',data,{headers:{'Content-Type':'application/json'}}).then(res=>{
+  http.post('/user/signup',data).then(res=>{
     let status=res.data.Code==1000;
     $q.notify({
 

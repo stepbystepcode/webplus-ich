@@ -7,8 +7,8 @@ const route = useRoute();
 const router = useRouter();
 import { VueEternalLoading, LoadAction } from '@ts-pro/vue-eternal-loading';
 import BackBtn from 'components/BackBtn.vue';
+import http from 'src/utils/http';
 
-const URL = 'https://link.ichgo.cn';
 const PAGE_SIZE = 5;
 
 type Product = {
@@ -22,7 +22,7 @@ const list = ref<Product[]>([]);
 let page = 1;
 
 function loadProducts(page: number): Promise<Product[]> {
-  return axios.get(`${URL}/api/v1/produce/get_list/${route.params.id}?size=${PAGE_SIZE}&page=${page}`)
+  return http.get(`/produce/get_list/${route.params.id}?size=${PAGE_SIZE}&page=${page}`)
     .then((res) => res.data.Data);
 }
 

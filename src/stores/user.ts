@@ -16,9 +16,9 @@ export const useUserStore = defineStore('users', {
     //increment () {
       //this.counter++;
     //}
-    login(username:string,token:string){
+    login(username:string,token?:string){
       this.username=username;
-      this.token=token;
+      this.token=token||'';
     },
     logout(){
       this.username='未登录'

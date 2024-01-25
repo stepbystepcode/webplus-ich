@@ -1,33 +1,41 @@
 <script setup lang="ts">
-import {useRouter} from 'vue-router';
+import { RouteLocationRaw, useRouter } from 'vue-router';
 const router = useRouter();
 
-const account=[{
-  icon:'message',
+interface Item{
+  icon:string;
+  text:string;
+  link?:string;
+}
+const account:Item[]=[{
+  icon:'chat',
   text:'系统消息'
 },{
   icon:'history',
-  text:'历史记录'
+  text:'历史记录',
+  link: '/history'
 },{
-  icon:'study',
+  icon:'event_available',
   text:'学习记录'
 }]
-const content=[
+const content:Item[]=[
   {
-    icon:'make',
+    icon:'stars',
     text:'我的制作'
   },{
-    icon:'favourite',
+    icon:'bookmark',
     text:'我的收藏'
   },{
-    icon:'ticket',
+    icon:'confirmation_number',
     text:'我的门票'
   },{
-    icon:'orders',
-    text:'我的订单'
+    icon:'shopping_bag',
+    text:'我的订单',
+    link:'/order'
   },{
-    icon:'cart',
-    text:'购物车'
+    icon:'shopping_cart',
+    text:'购物车',
+    link:'/cart'
   }
 ]
 import { useUserStore } from 'stores/user';
@@ -45,15 +53,20 @@ const store = useUserStore();
       <q-btn class="be-artist">成为识艺者</q-btn>
     </div>
     <div class="text-h6 q-my-md">我的账户</div>
-    <div v-for="i in account" :key="i">{{i.text}}</div>
+    <div class="row q-gutter-sm">
+    <div v-for="i in account" :key="i" class="column items-center" @click="router.push(i.link as RouteLocationRaw)"><q-icon class="text-h6" :name="i.icon"/>{{i.text}}</div>
+    </div>
     <div class="text-h6 q-my-md">我的内容</div>
-    <div v-for="i in content" :key="i">{{i.text}}</div>
+    <div class="row q-gutter-sm">
+    <div v-for="i in content" :key="i" class="column items-center" @click="router.push(i.link as RouteLocationRaw)"><q-icon class="text-h6" :name="i.icon"/>{{i.text}}</div>
+    </div>
     <div class="text-h6 q-my-md">我的服务</div>
   </div>
 </template>
 
 <style scoped lang="scss">
 .bg {
+  opacity: .4;
   position: absolute;
   left: -2rem;
   top: -5rem;

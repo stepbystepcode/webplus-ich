@@ -11,8 +11,8 @@ const router = useRouter();
 const slide = ref(1);
 const autoplay = ref(true);
 const test = ref(true);
-import axios from 'axios';
 import {ref} from 'vue';
+import http from 'src/utils/http';
 
 interface ClassData {
   id: number;
@@ -25,9 +25,9 @@ const imgList = ref();
 (async () => {
   try {
     const [response1] = await Promise.all([
-      axios.get<{
+      http.get<{
         Data: ClassData[]
-      }>(`https://link.ichgo.cn/api/v1/produce/get_detail/${route.params.id}`, {headers: {Authorization: `Bearer ${store.token}`}}),
+      }>(`/produce/get_detail/${route.params.id}`),
     ]);
 
     res.value = response1.data.Data;
@@ -39,7 +39,8 @@ const imgList = ref();
 </script>
 
 <template>
-  <div v-if="store.token">
+  <div v-if="store.token" class="flex justify-center items-start" style="height:calc(100vh - 60px);background-image:url(/others/bg.jpg)">
+    <div class="bg-white flex justify-center q-my-lg q-mt-xl" style="width: 95vw;border-radius: 1rem">
     <BackBtn/>
     <q-carousel
       animated
@@ -47,8 +48,9 @@ const imgList = ref();
       v-model="slide"
       navigation
       infinite
+      style="width: 90vw;border-radius: 1rem"
       height="13rem"
-      class="q-mb-md"
+      class="q-my-md"
       :autoplay="autoplay"
       transition-prev="slide-right"
       transition-next="slide-left"
@@ -59,10 +61,12 @@ const imgList = ref();
 
     </q-carousel>
     <div class="q-ma-md">
-      <article>
-        <span class="text-h5">{{ res.name }}</span><br>
+      <article v-if="res">
+        <span class="text-h5" style="position: absolute;top: .5rem;left:4rem">{{ res.name }}</span><br>
+        <span class="text-h5">简介</span><br>
         <p class="text-h6"> {{ res.detail }}</p>
       </article>
+    </div>
     </div>
   </div>
   <div v-else>

@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useUserStore } from 'stores/user';
 const store = useUserStore();
 import {useRouter} from 'vue-router';
+import http from 'src/utils/http';
 const router=useRouter();
 
 const $q = useQuasar()
@@ -15,7 +16,7 @@ const onSubmit=()=>{
     username:username.value,
     password:password.value
   }
-  axios.post('https://link.ichgo.cn/api/v1/user/login',data,{headers:{'Content-Type':'application/json'}}).then(res=>{
+  http.post('/user/login',data).then(res=>{
     let status=res.data.Code==1000;
     $q.notify({
 
