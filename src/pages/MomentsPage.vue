@@ -1,36 +1,42 @@
 <script setup lang="ts">
 import {ref} from 'vue'
 import {useRouter} from 'vue-router';
-const router=useRouter();
 import SimpleGallery from '../components/MomentsGallery.vue';
+import http from 'src/utils/http';
+const router=useRouter();
+const search=ref('');
 const model = ref('moments')
 const subscribe = ref(false);
-const images= [
+const images = (imgList:Img[]|null) => imgList&&imgList.map(_=>(
     {
-      largeURL:
-        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-2500.jpg',
-      thumbnailURL:
-        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/1/img-200.jpg',
-      width: 1875,
-      height: 2500,
-    },
-    {
-      largeURL:
-        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-2500.jpg',
-      thumbnailURL:
-        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/2/img-200.jpg',
-      width: 1669,
-      height: 2500,
-    },
-    {
-      largeURL:
-        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-2500.jpg',
-      thumbnailURL:
-        'https://cdn.photoswipe.com/photoswipe-demo-images/photos/3/img-200.jpg',
-      width: 2500,
-      height: 1666,
-    },
-  ];
+      largeURL:_.url,
+      thumbnailURL:_.url,
+      width: parseInt(_.width),
+      height:parseInt(_.height),
+    }
+  )
+)
+const response = await http.get('/dynamic/get_list');
+const list:Item[]=response.data.reverse().map((item:Item)=>({
+    ...item,
+    img:images(item.img)
+}));
+interface Item{
+  id:number;
+  detail:string;
+  img: Img[]|null;
+  userId:number;
+  userName:string;
+  timestamp:string;
+  comments:number;
+  likes:number;
+}
+interface Img{
+  url:string;
+  width:string;
+  height:string;
+}
+
 const btnGroup = [
   {
     'title': '传承人互动',
@@ -68,8 +74,8 @@ const btnGroup = [
     />
   <q-btn flat @click="router.push('/post')"><q-icon size="1.5em" name="add_circle"></q-icon></q-btn></div>
     <q-tab-panels v-model="model" animated class="bg-transparent">
-      <q-tab-panel name="moments">
-        <q-input rounded outlined dense class="q-mb-md" bg-color="white"></q-input>
+      <q-tab-panel name="moments" v-if="list">
+        <q-input rounded outlined dense class="q-mb-md" bg-color="white" v-model="search" />
         <div class="btn-warp row justify-center q-gutter-lg">
           <div v-for="(btn,i) in btnGroup" :key="btn.title" class="column flex-center">
             <q-btn round style="background-color: #EBD3AC" class="q-mb-sm flex-center"><img style="width:3rem;border-radius: 50%"
@@ -78,34 +84,26 @@ const btnGroup = [
             {{ btn.title }}
           </div>
         </div>
-        <q-card class="q-mt-md q-pa-md radius row" style="flex:1">
+        <q-card class="q-mt-md q-pa-md radius row" style="flex:1" v-for="_ in list" :key="_.id">
           <q-avatar class="q-mr-sm"
                     style="border-radius: .2em;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12)">
             <img src="/others/avatar.jpg" alt=""></q-avatar>
           <div class="column" style="flex:1">
             <div class="row justify-between">
               <div class="row items-center">
-                <span>MARS</span>
+                <span>{{_.userName}}</span>
                 <q-badge rounded class="q-mx-sm" color="orange" label="VIP"/>
-                <span>每日分享:</span></div>
+               </div>
               <q-btn @click="subscribe=!subscribe" rounded dense flat class="q-px-sm justify-center items-center"
                      style="height: 5px;border:1px solid #886f65;color: #886f65">{{subscribe?'已关注':'+ 关注'}}
               </q-btn>
             </div>
-            <span>3月3日 山西</span>
-<!--            <div class="row q-my-md" style="height: 150px;gap:.5rem">-->
-<!--              <div class="bg-red col radius"></div>-->
-<!--              <div class="column col" style="gap:.5rem">-->
-<!--                <div class="bg-green col radius"></div>-->
-<!--                <div class="bg-yellow col radius"></div>-->
-<!--              </div>-->
-<!--            </div>-->
-            <SimpleGallery class="q-my-sm" galleryID="my-test-gallery" :images="images" />
-            <span>开始，我只是学会了扎染，后来我发现我多了一份生活。</span>
+            <span>{{_.timestamp.replace(/^(\d+)-(\d+)-(\d+).*/, '$2月$3日')}} 山西</span>
+            <SimpleGallery class="q-my-sm" galleryID="my-test-gallery" :images="_.img" />
+            <span>{{_.detail}}</span>
             <div class="row justify-end items-center q-gutter-x-sm">
-              <q-icon name="o_repeat"></q-icon>{{16}}
-              <q-icon name="o_chat"></q-icon>{{16}}
-              <q-icon name="o_thumb_up"></q-icon>{{16}}
+              <q-icon name="o_chat"></q-icon>{{_.comments}}
+              <q-icon name="o_thumb_up"></q-icon>{{_.likes}}
             </div>
           </div>
         </q-card>

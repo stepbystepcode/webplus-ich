@@ -3,6 +3,7 @@ import {ref} from 'vue';
 import {useRouter} from 'vue-router';
 import HrLine from '../components/HrLine.vue'
 import http from 'src/utils/http';
+import {news} from 'src/data';
 
 const router=useRouter();
 const slide = ref(1);
@@ -26,6 +27,11 @@ const btnGroup = [
     'link': ''
   }
 ]
+//return today weekday number
+const getNews = () => {
+  const date = new Date();
+  return news[date.getDay()%10];
+}
 const load=ref(false);
 let res=ref();
 let search=ref();
@@ -91,9 +97,9 @@ interface ClassData {
     </div>
     <HrLine/>
     <span class="text-h6 q-my-md">每日资讯></span>
-    <q-card class="row justify-between">
-      <div style="flex:1" class="q-pa-md">高水旺<br>64岁的国家级非物质文化遗产代表性继承人，中国艺术设计院副院长。</div>
-      <q-img width="7rem" src="/others/gsw.png" alt=""></q-img>
+    <q-card @click="router.push('/news')" class="row justify-between">
+      <div style="flex:1" class="q-pa-md"><strong>{{getNews().title}}</strong><br/>{{getNews().summarize}}</div>
+      <q-img width="7rem" :src="`https://link.ichgo.cn/api/v1/upload/img/${getNews().img}.`" alt=""></q-img>
     </q-card>
     <span class="text-h6 q-my-md">热门推荐></span></div>
     <div class="box-warp row no-wrap overflow-auto q-gutter-lg full-width">

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {ref} from 'vue';
 import { useQuasar } from 'quasar'
-import axios from 'axios';
 import { useUserStore } from 'stores/user';
 const store = useUserStore();
 import {useRouter} from 'vue-router';
@@ -19,7 +18,6 @@ const onSubmit=()=>{
   http.post('/user/login',data).then(res=>{
     let status=res.data.Code==1000;
     $q.notify({
-
       color: status?'green-4':'red-4',
       textColor: 'white',
       icon: res.data.Code==1000?'done':'error',

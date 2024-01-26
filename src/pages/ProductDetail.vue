@@ -60,11 +60,18 @@ const imgList = ref();
       <q-carousel-slide v-for="(img,i) in imgList" :name="i" :key="i" :img-src="img"/>
 
     </q-carousel>
-    <div class="q-ma-md">
-      <article v-if="res">
+    <div class="q-ma-md" style="max-width: -webkit-fill-available">
+      <article v-if="res" class="q-mb-xl">
         <span class="text-h5" style="position: absolute;top: .5rem;left:4rem">{{ res.name }}</span><br>
-        <span class="text-h5">简介</span><br>
+        <span class="text-h5">简介</span>
         <p class="text-h6"> {{ res.detail }}</p>
+        <span class="text-h5">相关视频</span>
+        <div>
+        <a :href="res.video">点击观看</a>
+        </div>
+        <span class="text-h5">传承人</span>
+        <q-img :src="res.inheritor.img" />
+        <p class="text-h6"> [中国匠人]{{ res.inheritor.name }}</p>
       </article>
     </div>
     </div>
