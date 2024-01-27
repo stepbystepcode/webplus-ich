@@ -38,13 +38,14 @@ const onSubmit=()=>{
 </script>
 
 <template>
+  <div class="fullscreen" style="background: url(/others/bg.jpg);filter: blur(2px);z-index: -1"></div>
   <q-form class="q-ma-md q-gutter-y-md column" @submit="onSubmit">
     <q-input outlined label="用户名" v-model="username" lazy-rules
              :rules="[ val => val && val.length > 0 || '请填写此项']"></q-input>
     <q-input outlined type="password" label="密码" v-model="password" lazy-rules
              :rules="[ val => val && val.length > 0 || '请填写此项']"></q-input>
-    <q-btn type="submit">登录</q-btn>
-    <q-btn @click="router.push('/signup')">没有账号？去注册</q-btn>
+    <q-btn  class="bg-white" type="submit">登录</q-btn>
+    <q-btn  class="bg-white" @click="router.push('/signup')">没有账号？去注册</q-btn>
   </q-form>
 </template>
 

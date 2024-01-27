@@ -10,7 +10,7 @@ const getNews = () => {
 
 <template>
   <back-btn/>
-  <span class="text-h5" style="position: absolute;top: 1rem;left:4rem">{{getNews().title}}</span><br>
+  <span class="text-h5 ellipsis" style="width:80vw;position: absolute;top: 1rem;left:4rem">{{getNews().title}}</span><br>
   <div class="fullscreen" style="background: url(/others/bg.jpg);filter: blur(2px);z-index: -1"></div>
   <div class="row q-gutter-md q-ma-lg">
     <q-card>

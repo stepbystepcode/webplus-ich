@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref} from 'vue'
+import { computed, ref } from 'vue';
 import {useRouter} from 'vue-router';
 import SimpleGallery from '../components/MomentsGallery.vue';
 import http from 'src/utils/http';
@@ -21,6 +21,9 @@ const list:Item[]=response.data.reverse().map((item:Item)=>({
     ...item,
     img:images(item.img)
 }));
+const filterList= computed(()=>(
+    search.value?list.filter(_=>_.detail.includes(search.value)):list
+))
 interface Item{
   id:number;
   detail:string;
@@ -44,15 +47,15 @@ const btnGroup = [
   },
   {
     'title': '铁画锻制',
-    'link': ''
+    'link': '/product/72'
   },
   {
     'title': '唐三彩',
-    'link': ''
+    'link': '/product/74'
   },
   {
     'title': '传统曲艺',
-    'link': ''
+    'link': '/class/4'
   }
 ]
 </script>
@@ -75,16 +78,16 @@ const btnGroup = [
   <q-btn flat @click="router.push('/post')"><q-icon size="1.5em" name="add_circle"></q-icon></q-btn></div>
     <q-tab-panels v-model="model" animated class="bg-transparent">
       <q-tab-panel name="moments" v-if="list">
-        <q-input rounded outlined dense class="q-mb-md" bg-color="white" v-model="search" />
+        <q-input style="max-width: 80vw;margin: -1rem auto 1rem" rounded outlined dense class="q-mb-md" bg-color="white" v-model="search" />
         <div class="btn-warp row justify-center q-gutter-lg">
-          <div v-for="(btn,i) in btnGroup" :key="btn.title" class="column flex-center">
+          <div v-for="(btn,i) in btnGroup" @click="router.push(btn.link)" :key="btn.title" class="column flex-center">
             <q-btn round style="background-color: #EBD3AC" class="q-mb-sm flex-center"><img style="width:3rem;border-radius: 50%"
                                                                                             :src="`/moments/btn-group/${i+1}.jpg`"
                                                                                             alt=""></q-btn>
             {{ btn.title }}
           </div>
         </div>
-        <q-card class="q-mt-md q-pa-md radius row" style="flex:1" v-for="_ in list" :key="_.id">
+        <q-card class="q-mt-md q-pa-md radius row" style="flex:1" v-for="_ in filterList" :key="_.id">
           <q-avatar class="q-mr-sm"
                     style="border-radius: .2em;box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 1px rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12)">
             <img src="/others/avatar.jpg" alt=""></q-avatar>

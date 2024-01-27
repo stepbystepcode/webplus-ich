@@ -32,11 +32,12 @@ const content:Item[]=[
     icon:'shopping_bag',
     text:'我的订单',
     link:'/order'
-  },{
-    icon:'shopping_cart',
-    text:'购物车',
-    link:'/cart'
-  }
+  },
+  // {
+  //   icon:'shopping_cart',
+  //   text:'购物车',
+  //   link:'/cart'
+  // }
 ]
 import { useUserStore } from 'stores/user';
 const store = useUserStore();

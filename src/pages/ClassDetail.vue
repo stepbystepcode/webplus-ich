@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {useRoute} from 'vue-router';
 import {useRouter} from 'vue-router';
-import axios from 'axios';
 import {ref} from 'vue';
 const route = useRoute();
 const router = useRouter();
@@ -36,8 +35,11 @@ async function load({ loaded }: LoadAction): Promise<void> {
 
 <template>
   <BackBtn/>
+  <div class="fullscreen" style="background: url(/others/bg.jpg);filter: blur(2px);z-index: -1"></div>
   <div class="q-ma-md q-mt-xl">
-  <div v-for="item in list" :key="item.id" class="card mb-3" @click="router.push(`/product/${item.produce.id}`)">{{item.produce.name}}</div>
+  <div v-for="item in list" :key="item.id" class="card q-mb-lg" @click="router.push(`/product/${item.produce.id}`)">{{item.produce.name}}
+  <q-img :src="item.produce.img.match(/^[^+]+/)[0]" style="width: 90vw;border-radius: 1rem" />
+  </div>
   <VueEternalLoading :load="load"></VueEternalLoading>
   </div>
 </template>

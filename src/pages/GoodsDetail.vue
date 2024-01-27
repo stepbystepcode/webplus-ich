@@ -6,12 +6,14 @@ import http from 'src/utils/http';
 
 import {useRouter} from 'vue-router';
 import { useUserStore } from 'stores/user';
+import { useQuasar } from 'quasar';
 const router = useRouter();
 const store = useUserStore();
 const test = ref(true);
 const route = useRoute();
 const num = ref(1);
 const res = ref<goodsType>();
+const $q = useQuasar();
 
 interface goodsType {
   name: string;
@@ -30,6 +32,18 @@ onMounted(async () => {
     console.error(error);
   }
 });
+const handleClick = () => {
+  $q.dialog({
+    title: '购买提示',
+    message: '是否确认购买？',
+    cancel: true,
+    persistent: false
+  }).onOk(() => {
+    $q.notify({message:'购买成功',color:'orange'})
+  }).onCancel(() => {
+    $q.notify({message:'购买取消',color:'red'})
+  })
+};
 
 </script>
 <template>
@@ -53,7 +67,7 @@ onMounted(async () => {
       </div>
       <div class="q-ma-md text-grey-10">{{ res.detail }}</div>
       <div class="row justify-center q-mt-xl">
-      <q-btn style="border-radius: 4rem;bottom:4.5rem" @click="$q.notify({message:'已加入购物车',color:'orange'})" class="fixed q-px-xl bg-grey-5 text-white text-h6">立 即 购 买</q-btn>
+      <q-btn style="border-radius: 4rem;bottom:4.5rem" @click="handleClick" class="fixed q-px-xl bg-grey-5 text-white text-h6">立 即 购 买</q-btn>
       </div>
     </div>
     <div v-else>

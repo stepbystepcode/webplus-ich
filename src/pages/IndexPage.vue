@@ -34,7 +34,7 @@ const getNews = () => {
 }
 const load=ref(false);
 let res=ref();
-let search=ref();
+let hot=ref();
 interface SwiperData {
   id: number;
   img: string;
@@ -49,11 +49,11 @@ interface ClassData {
   try {
     const [response1, response2] = await Promise.all([
       http.get<{ Data: SwiperData[] }>('/swiper/get_list'),
-      http.get<{ Data: ClassData[] }>('/class/get_list'),
+      http.get<{ Data: ClassData[] }>('/hot'),
     ]);
 
     res.value = response1.data.Data;
-    search.value = response2.data.Data;
+    hot.value = response2.data.Data;
     load.value = true;
   } catch (error) {
     console.error(error);
@@ -67,7 +67,7 @@ interface ClassData {
 
     <div class="column q-mx-md">
       <img class="full-width" style="position: absolute;left:0;top:0;z-index: -1" src="/others/home-bg.jpg" alt="">
-    <q-field borderless style="background-image: url(/others/search-bar.png); background-size: contain;">
+    <q-field borderless style="background-image: url(/others/search-bar.png); background-size: cover;">
       <q-input @click="router.push('/search')" borderless placeholder="搜  索" class="q-px-xl" style="width: 100%"></q-input>
     </q-field>
     <q-carousel
@@ -103,9 +103,7 @@ interface ClassData {
     </q-card>
     <span class="text-h6 q-my-md">热门推荐></span></div>
     <div class="box-warp row no-wrap overflow-auto q-gutter-lg full-width">
-      <div><img src="/others/gsw.png" alt=""><span>123123123</span></div>
-      <div><img src="/others/gsw.png" alt=""><span>123123123</span></div>
-      <div><img src="/others/gsw.png" alt=""><span>123123123</span></div>
+      <div v-for="item in hot" :key="item.id" @click="router.push(`/product/${item.id}/`)"><img :src="item.cover" alt="item.name"><span>{{item.name}}</span></div>
     </div>
     <div class="column q-ma-md">
     <HrLine/>
@@ -125,8 +123,10 @@ interface ClassData {
     width: 8rem;
     img {
       width: inherit;
+      object-fit: fill;
+      height: 5rem;
       border-radius: 1rem;
-      box-shadow: #e6d3af 5px -5px 3px 0px;
+      box-shadow: #e6d3af 3px -3px 10px 1px;
     }
   }
 }
