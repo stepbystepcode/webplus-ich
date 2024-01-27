@@ -14,7 +14,7 @@ const getNews = () => {
   <div class="fullscreen" style="background: url(/others/bg.jpg);filter: blur(2px);z-index: -1"></div>
   <div class="row q-gutter-md q-ma-lg">
     <q-card>
-      <q-img width="100%" :src="`https://link.ichgo.cn/api/v1/upload/img/${getNews().img}.`" alt=""></q-img>
+      <q-img width="100%" :src="`/news/${new Date().getDay()%10+1}.png`" alt=""></q-img>
       <div class="q-pa-md text-h6">{{getNews().content}}</div>
     </q-card>
   </div>

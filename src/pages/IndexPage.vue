@@ -99,7 +99,7 @@ interface ClassData {
     <span class="text-h6 q-my-md">每日资讯></span>
     <q-card @click="router.push('/news')" class="row justify-between">
       <div style="flex:1" class="q-pa-md"><strong>{{getNews().title}}</strong><br/>{{getNews().summarize}}</div>
-      <q-img width="7rem" :src="`https://link.ichgo.cn/api/v1/upload/img/${getNews().img}.`" alt=""></q-img>
+      <q-img width="7rem" :src="`/news/${new Date().getDay()%10+1}.png`" alt=""></q-img>
     </q-card>
     <span class="text-h6 q-my-md">热门推荐></span></div>
     <div class="box-warp row no-wrap overflow-auto q-gutter-lg full-width">

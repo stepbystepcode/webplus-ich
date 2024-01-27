@@ -42,20 +42,20 @@ interface Img{
 
 const btnGroup = [
   {
-    'title': '传承人互动',
-    'link': ''
+    title: '传承人互动',
+    link: ''
   },
   {
-    'title': '铁画锻制',
-    'link': '/product/72'
+    title: '铁画锻制',
+    link: '/product/72'
   },
   {
-    'title': '唐三彩',
-    'link': '/product/74'
+    title: '唐三彩',
+    link: '/product/74'
   },
   {
-    'title': '传统曲艺',
-    'link': '/class/4'
+   title: '传统曲艺',
+   link: '/class/4'
   }
 ]
 </script>
@@ -80,8 +80,8 @@ const btnGroup = [
       <q-tab-panel name="moments" v-if="list">
         <q-input style="max-width: 80vw;margin: -1rem auto 1rem" rounded outlined dense class="q-mb-md" bg-color="white" v-model="search" />
         <div class="btn-warp row justify-center q-gutter-lg">
-          <div v-for="(btn,i) in btnGroup" @click="router.push(btn.link)" :key="btn.title" class="column flex-center">
-            <q-btn round style="background-color: #EBD3AC" class="q-mb-sm flex-center"><img style="width:3rem;border-radius: 50%"
+          <div v-for="(btn,i) in btnGroup" :key="btn.title" class="column flex-center">
+            <q-btn round style="background-color: #EBD3AC"  @click="router.push(btn.link)" class="q-mb-sm flex-center"><img style="width:3rem;border-radius: 50%"
                                                                                             :src="`/moments/btn-group/${i+1}.jpg`"
                                                                                             alt=""></q-btn>
             {{ btn.title }}
