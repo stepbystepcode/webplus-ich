@@ -27,7 +27,7 @@ onMounted(async () => {
     <span class="text-h5">新品推荐</span>
     <div class="row q-gutter-md" v-if="res">
       <q-card @click="router.push(`/goods/${_.id}`)" v-for="_ in res[0].goodsList" :key="_.id" class="col" style="height: 12rem">
-        <q-img :src="_.cover" style="height: 8rem"></q-img>
+        <q-img :src="`${_.cover}?w=200`" style="height: 8rem"></q-img>
         <div class="q-pa-md">{{_.name}}<br>￥{{_.price}}</div>
       </q-card>
     </div>

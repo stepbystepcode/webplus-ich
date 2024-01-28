@@ -26,11 +26,13 @@ onMounted(async () => {
     <back-btn />
     <span class="text-h5" style="position: absolute;top: 1rem;left:4rem">我的订单</span><br>
     <div class="fullscreen" style="background: url(/others/bg.jpg);filter: blur(2px);z-index: -1"></div>
-    <div class="row q-gutter-md q-ma-lg" v-if="res">
-      <q-card @click="router.push(`/goods/${_.id}`)" v-for="_ in res[0].goodsList" :key="_.id" class="col"
+    <div class="column q-gutter-md q-ma-lg" v-if="res">
+      <q-card @click="router.push(`/goods/${_['*goods'].id}`)" v-for="_ in res" :key="_.id" class="col"
               style="height: 12rem">
-        <q-img :src="_.cover" style="height: 8rem"></q-img>
-        <div class="q-pa-md">{{ _.name }}<br>￥{{ _.price }}</div>
+        <q-img :src="_['*goods'].cover" style="height: 8rem"></q-img>
+        <div class="q-pa-md">{{ _['*goods'].name }}<br>￥{{ _.final_Payment }}
+          <span>数量：{{_.number}}</span>
+        </div>
       </q-card>
     </div>
   </div>

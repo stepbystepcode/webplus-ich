@@ -10,7 +10,7 @@ const subscribe = ref(false);
 const images = (imgList:Img[]|null) => imgList&&imgList.map(_=>(
     {
       largeURL:_.url,
-      thumbnailURL:_.url,
+      thumbnailURL:_.url+'?w=100',
       width: parseInt(_.width),
       height:parseInt(_.height),
     }

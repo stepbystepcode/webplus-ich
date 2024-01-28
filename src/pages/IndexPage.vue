@@ -38,6 +38,7 @@ let hot=ref();
 interface SwiperData {
   id: number;
   img: string;
+  produceId:number;
 }
 
 interface ClassData {
@@ -84,7 +85,7 @@ interface ClassData {
       @mouseenter="autoplay = false"
       @mouseleave="autoplay = true"
     >
-      <q-carousel-slide  v-for="i in res" :name="i.id" :key="i" :img-src="i.img"/>
+      <q-carousel-slide  v-for="i in res" :name="i.id" :key="i" :img-src="`${i.img}?w=500`" @click="router.push(`/product/${i.produceId}`)" />
 
     </q-carousel>
     <div class="btn-warp row justify-center q-gutter-lg">
@@ -103,7 +104,7 @@ interface ClassData {
     </q-card>
     <span class="text-h6 q-my-md">热门推荐></span></div>
     <div class="box-warp row no-wrap overflow-auto q-gutter-lg full-width">
-      <div v-for="item in hot" :key="item.id" @click="router.push(`/product/${item.id}/`)"><img :src="item.cover" alt="item.name"><span>{{item.name}}</span></div>
+      <div v-for="item in hot" :key="item.id" @click="router.push(`/product/${item.id}/`)"><img :src="`${item.cover}?w=100`" alt="item.name"><span>{{item.name}}</span></div>
     </div>
     <div class="column q-ma-md">
     <HrLine/>

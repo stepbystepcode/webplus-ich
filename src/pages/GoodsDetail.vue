@@ -41,7 +41,7 @@ const handleClick = () => {
     persistent: false
   }).onOk(() => {
     http.post('/order/add', {
-      produceId: route.params.id,
+      goodsId: parseInt(route.params.id as string),
       number: num.value
     }).then(() =>
       $q.notify({ message: '购买成功', color: 'orange' }));

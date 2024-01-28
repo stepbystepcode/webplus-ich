@@ -37,7 +37,7 @@ const title=()=>{
     <div class="fullscreen" style="background: url(/others/bg.jpg);filter: blur(2px);z-index: -1"></div>
     <div class="row q-gutter-md q-ma-lg" v-if="res">
       <q-card @click="router.push(`/goods/${_.id}`)" v-for="_ in res[0].goodsList" :key="_.id" class="col" style="height: 12rem">
-        <q-img :src="_.cover" style="height: 8rem"></q-img>
+        <q-img :src="`${_.cover}?w=200`" style="height: 8rem"></q-img>
         <div class="q-pa-md">{{_.name}}<br>￥{{_.price}}</div>
       </q-card>
     </div>
