@@ -6,7 +6,7 @@ import http from 'src/utils/http';
 import { useRouter } from 'vue-router';
 
 interface Data {
-  Longitude: number;
+  longitude: number;
   latitude: number;
   name: string;
   id: number;
@@ -22,7 +22,7 @@ onMounted(async () => {
   data.value = array.map(
     (item: Data) => {
       return {
-        position: [item.Longitude, item.latitude],
+        position: [item.longitude, item.latitude],
         label: {
           content: item.name,
           offset: [0, 0],
