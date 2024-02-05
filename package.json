@@ -13,6 +13,7 @@
     "build": "quasar build"
   },
   "dependencies": {
+    "@dabu/vue3-amap": "^0.0.16-beta.0",
     "@quasar/extras": "^1.0.0",
     "@ts-pro/vue-eternal-loading": "^1.3.1",
     "axios": "^1.4.0",

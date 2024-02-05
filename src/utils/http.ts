@@ -3,7 +3,7 @@ import { useUserStore } from 'stores/user';
 
 // 创建 Axios 实例并设置基本配置
 const http: AxiosInstance = axios.create({
-  baseURL: 'https://link.ichgo.cn/api/v1/', // 替换为你的 API 基础 URL
+  baseURL: 'http://link.ichgo.cn/api/v1/', // 替换为你的 API 基础 URL
   timeout: 10000, // 请求超时时间
 });
 

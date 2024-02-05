@@ -57,7 +57,7 @@ const imgList = ref();
       @mouseenter="autoplay = false"
       @mouseleave="autoplay = true"
     >
-      <q-carousel-slide v-for="(img,i) in imgList" :name="i" :key="i" :img-src="img"/>
+      <q-carousel-slide v-for="(img,i) in imgList" :name="i" :key="i" :img-src="`${img}?w=400`"/>
 
     </q-carousel>
     <div class="q-ma-md" style="max-width: -webkit-fill-available">
@@ -70,7 +70,7 @@ const imgList = ref();
         <a :href="res.video">点击观看</a>
         </div>
         <span class="text-h5">传承人</span>
-        <q-img :src="res.inheritor.img" />
+        <q-img :src="`${res.inheritor.img}?w=400`" />
         <p class="text-h6"> [中国匠人]{{ res.inheritor.name }}</p>
       </article>
     </div>
